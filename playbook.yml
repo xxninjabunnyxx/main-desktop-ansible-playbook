@@ -33,3 +33,8 @@
       pacman:
         name: github-cli
         state: present
+
+    - name: Installing gnome-tweaks
+      pacman:
+        name: gnome-tweaks
+        state: present
