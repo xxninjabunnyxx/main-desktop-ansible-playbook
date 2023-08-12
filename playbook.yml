@@ -1,0 +1,35 @@
+---
+- name: Setup main Arch Linux desktop
+  hosts: main-arch-desktop
+  become: yes
+
+  tasks:
+    - name: Installing nvidia
+      pacman:
+        name: nvidia
+        state: present
+
+    - name: Installing nvidia-libgl
+      pacman:
+        name: nvidia-libgl
+        state: present
+
+    - name: Installing nvidia-settings
+      pacman:
+        name: nvidia-settings
+        state: present
+
+    - name: Installing python
+      pacman:
+        name: python
+        state: present
+
+    - name: Installing python-pip
+      pacman:
+        name: python-pip
+        state: present
+
+    - name: Installing github-cli
+      pacman:
+        name: github-cli
+        state: present
