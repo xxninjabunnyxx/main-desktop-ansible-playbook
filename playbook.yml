@@ -1,35 +1,236 @@
 ---
-- name: Setup main Arch Linux desktop
-  hosts: main-arch-desktop
+- name: Setup main Ubuntu desktop
+  hosts: main-ubuntu-desktop
   become: yes
 
   tasks:
-    - name: Installing nvidia
-      pacman:
-        name: nvidia
-        state: present
+    - name: Add PPAs
+      when: ansible_facts.distribution == 'Ubuntu'
+      block:
+        - name: Adding Ansible PPA
+          apt_repository:
+            repo: ppa:ansible/ansible
+            state: present
+            validate_certs: no
 
-    - name: Installing nvidia-libgl
-      pacman:
-        name: nvidia-libgl
-        state: present
+    - name: Install APT packages
+      when: ansible_facts.distribution == 'Ubuntu'
+      block:
+        - name: Updating APT cache
+          apt:
+            update_cache: yes
 
-    - name: Installing nvidia-settings
-      pacman:
-        name: nvidia-settings
-        state: present
+        - name: Installing Python
+          apt:
+            name: python3
+            state: present
+        
+        - name: Installing Ansible
+          apt:
+            name: ansible
+            state: present
 
-    - name: Installing python
-      pacman:
-        name: python
-        state: present
+        - name: Installing Snapd
+          apt:
+            name: snapd
+            state: present
+        
+        - name: Installing Python
+          apt:
+            name: python3
+            state: present
 
-    - name: Installing python-pip
-      pacman:
-        name: python-pip
-        state: present
+        - name: Installing PIP
+          apt:
+            name: python3-pip
+            state: present
 
-    - name: Installing github-cli
-      pacman:
-        name: github-cli
-        state: present
+        - name: Installing Flatpak
+          apt:
+            name: flatpak
+            state: present
+
+        - name: Installing Transmission
+          apt:
+            name: transmission
+            state: present
+
+        - name: Installing Git
+          apt:
+            name: git
+            state: present
+
+    - name: Gathering package facts
+      package_facts:
+        manager: auto
+        
+    - name: Install Snap packages
+      when: "'snapd' in ansible_facts.packages"
+      block:
+        - name: Installing VS Code
+          snap:
+            name: code
+            classic: yes
+            state: present
+      
+    - name: Install Flatpak
+      when: "'flatpak' in ansible_facts.packages"
+      block:
+        - name: Adding Flathub
+          flatpak_remote:
+            name: flathub
+            state: present
+            method: system
+            flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+        - name: Installing Chrome
+          flatpak:
+            name: com.google.Chrome
+            state: present
+            method: system
+
+        - name: Installing Discord
+          flatpak:
+            name: com.discordapp.Discord
+            state: present
+
+        - name: Installing VLC
+          flatpak:
+            name: org.videolan.VLC
+            state: present
+
+        - name: Installing GIMP
+          flatpak:
+            name: org.gimp.GIMP
+            state: present
+
+        - name: Installing Inkscape
+          flatpak:
+            name: org.inkscape.Inkscape
+            state: present
+
+        - name: Installing OBS Studio
+          flatpak:
+            name: com.obsproject.Studio
+            state: present
+
+        - name: Installing LibreOffice
+          flatpak:
+            name: org.libreoffice.LibreOffice
+            state: present
+
+        - name: Installing Krita
+          flatpak:
+            name: org.kde.krita
+            state: present
+
+        - name: Installing Audacity
+          flatpak:
+            name: org.audacityteam.Audacity
+            state: present
+
+        - name: Installing OBS Studio
+          flatpak:
+            name: com.obsproject.Studio
+            state: present       
+
+        - name: Installing Yuzu
+          flatpak:
+            name: org.yuzu_emu.yuzu
+            state: present
+        
+        - name: Installing FileZilla
+          flatpak:
+            name: org.filezillaproject.Filezilla
+            state: present
+
+        - name: Installing JDownloader
+          flatpak:
+            name: org.jdownloader.JDownloader
+            state: present
+
+        - name: Installing mGBA
+          flatpak:
+            name: io.mgba.mGBA
+            state: present
+
+        - name: Installing Flycast
+          flatpak:
+            name: org.flycast.Flycast
+            state: present
+
+        - name: Installing OpenRGB
+          flatpak:
+            name:  org.openrgb.OpenRGB
+            state: present
+
+        - name: Installing MakeMKV
+          flatpak:
+            name: com.makemkv.MakeMKV
+            state: present
+
+        - name: Installing Neovim
+          flatpak:
+            name: io.neovim.nvim
+            state: present
+
+        - name: Installing Insomnia
+          flatpak:
+            name: rest.insomnia.Insomnia
+            state: present
+
+        - name: Installing Wireshark
+          flatpak:
+            name: org.wireshark.Wireshark
+            state: present
+
+        - name: Installing DOSBox
+          flatpak:
+            name: com.dosbox_x.DOSBox-X
+            state: present
+
+        - name: Installing RetroArch
+          flatpak:
+            name: org.libretro.RetroArch
+            state: present
+
+        - name: Installing Dolphin
+          flatpak:
+            name: org.DolphinEmu.dolphin-emu
+            state: present
+
+        - name: Installing RPCS3
+          flatpak:
+            name: net.rpcs3.RPCS3
+            state: present
+
+        - name: Installing PPSSPP
+          flatpak:
+            name: org.ppsspp.PPSSPP
+            state: present
+
+        - name: Installing Citra
+          flatpak:
+            name: org.citra_emu.citra
+            state: present
+
+        - name: Installing DuckStation
+          flatpak:
+            name: org.duckstation.DuckStation
+            state: present
+
+        - name: Installing Xemu
+          flatpak:
+            name: app.xemu.Xemu
+            state: present
+
+        - name: Installing Steam
+          flatpak:
+            name: com.valvesoftware.Steam
+            state: present
+
+        - name: Installing MAME
+          flatpak:
+            name: org.mamedev.MAME
+            state: present
+            
