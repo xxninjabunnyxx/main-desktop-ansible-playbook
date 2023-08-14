@@ -93,144 +93,172 @@
           flatpak:
             name: com.discordapp.Discord
             state: present
+            method: system
 
         - name: Installing VLC
           flatpak:
             name: org.videolan.VLC
             state: present
+            method: system
 
         - name: Installing GIMP
           flatpak:
             name: org.gimp.GIMP
             state: present
+            method: system
 
         - name: Installing Inkscape
           flatpak:
             name: org.inkscape.Inkscape
             state: present
+            method: system
 
         - name: Installing OBS Studio
           flatpak:
             name: com.obsproject.Studio
             state: present
+            method: system
 
         - name: Installing LibreOffice
           flatpak:
             name: org.libreoffice.LibreOffice
             state: present
+            method: system
 
         - name: Installing Krita
           flatpak:
             name: org.kde.krita
             state: present
+            method: system
 
         - name: Installing Audacity
           flatpak:
             name: org.audacityteam.Audacity
             state: present
+            method: system
 
         - name: Installing OBS Studio
           flatpak:
             name: com.obsproject.Studio
-            state: present       
+            state: present
+            method: system
 
         - name: Installing Yuzu
           flatpak:
             name: org.yuzu_emu.yuzu
             state: present
+            method: system
         
         - name: Installing FileZilla
           flatpak:
             name: org.filezillaproject.Filezilla
             state: present
+            method: system
 
         - name: Installing JDownloader
           flatpak:
             name: org.jdownloader.JDownloader
             state: present
+            method: system
 
         - name: Installing mGBA
           flatpak:
             name: io.mgba.mGBA
             state: present
+            method: system
 
         - name: Installing Flycast
           flatpak:
             name: org.flycast.Flycast
             state: present
+            method: system
 
         - name: Installing OpenRGB
           flatpak:
             name:  org.openrgb.OpenRGB
             state: present
+            method: system
 
         - name: Installing MakeMKV
           flatpak:
             name: com.makemkv.MakeMKV
             state: present
+            method: system
 
         - name: Installing Neovim
           flatpak:
             name: io.neovim.nvim
             state: present
+            method: system
 
         - name: Installing Insomnia
           flatpak:
             name: rest.insomnia.Insomnia
             state: present
+            method: system
 
         - name: Installing Wireshark
           flatpak:
             name: org.wireshark.Wireshark
             state: present
+            method: system
 
         - name: Installing DOSBox
           flatpak:
             name: com.dosbox_x.DOSBox-X
             state: present
+            method: system
 
         - name: Installing RetroArch
           flatpak:
             name: org.libretro.RetroArch
             state: present
+            method: system
 
         - name: Installing Dolphin
           flatpak:
             name: org.DolphinEmu.dolphin-emu
             state: present
+            method: system
 
         - name: Installing RPCS3
           flatpak:
             name: net.rpcs3.RPCS3
             state: present
+            method: system
 
         - name: Installing PPSSPP
           flatpak:
             name: org.ppsspp.PPSSPP
             state: present
+            method: system
 
         - name: Installing Citra
           flatpak:
             name: org.citra_emu.citra
             state: present
+            method: system
 
         - name: Installing DuckStation
           flatpak:
             name: org.duckstation.DuckStation
             state: present
+            method: system
 
         - name: Installing Xemu
           flatpak:
             name: app.xemu.Xemu
             state: present
+            method: system
 
         - name: Installing Steam
           flatpak:
             name: com.valvesoftware.Steam
             state: present
+            method: system
 
         - name: Installing MAME
           flatpak:
             name: org.mamedev.MAME
             state: present
-            
+            method: system
