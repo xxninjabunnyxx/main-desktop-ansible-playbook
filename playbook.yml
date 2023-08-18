@@ -280,3 +280,16 @@
           name: nodejs
           state: present
           update_cache: yes
+
+    - name: Adding GitHub CLI
+      when: "'curl' in ansible_facts.packages"
+      block:
+      - name: Adding GitHub CLI repository 
+        ansible.builtin.shell:
+          cmd: curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo apt-key add -
+      
+      - name: Install GitHub CLI
+        apt:
+          name: gh
+          state: present
+          update_cache: yes
