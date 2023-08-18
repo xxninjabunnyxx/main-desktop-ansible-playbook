@@ -20,6 +20,11 @@
           apt:
             update_cache: yes
 
+        - name: Installing Curl
+          apt:
+            name: curl
+            state: present
+
         - name: Installing Python
           apt:
             name: python3
@@ -262,3 +267,16 @@
             name: org.mamedev.MAME
             state: present
             method: system
+
+    - name: Adding NodeSource repository
+      when: "'curl' in ansible_facts.packages"
+      block:
+      - name: Add NodeSource repository
+        ansible.builtin.shell:
+          cmd: curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+      
+      - name: Install NodeJS
+        apt:
+          name: nodejs
+          state: present
+          update_cache: yes
