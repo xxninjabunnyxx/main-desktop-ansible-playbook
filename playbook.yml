@@ -77,6 +77,12 @@
             name: code
             classic: yes
             state: present
+
+        - name: Installing Ruby
+          snap:
+            name: ruby
+            classic: yes
+            state: present
       
     - name: Install Flatpak
       when: "'flatpak' in ansible_facts.packages"
